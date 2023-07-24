@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
+import HomePage from './pages/Home/HomePage';
 // import './App.css';
-import Header from './components/Header/Header';
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <div className="App">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Header />} />
+            <Route path="/" element={<HomePage />} />
           </Routes>
         </BrowserRouter>
       </div>
