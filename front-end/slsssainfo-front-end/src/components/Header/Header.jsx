@@ -69,7 +69,7 @@ const Logo = styled.img`
 
 const Name_slsssa = styled.h1`
   color: #e60000;
-  font-size: 30pt;
+  font-size: 33pt;
 
   @media (max-width: 1024px) {
     font-size: 25pt;
