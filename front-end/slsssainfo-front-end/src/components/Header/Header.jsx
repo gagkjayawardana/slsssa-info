@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import logo from '../../assests/images/logo.jpg';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -97,6 +98,15 @@ const Navigationbar = styled.div`
 `;
 
 function Header() {
+  const navigate = useNavigate();
+
+  const NavigateToHome = () => {
+    navigate('/');
+  };
+  // Temporarily navigate to the SchollRegistrartion page
+  const NavigateToEvents = () => {
+    navigate('/schoolRegistration');
+  };
   return (
     <HeaderContainer>
       <Header_Logo_Topic>
@@ -115,7 +125,8 @@ function Header() {
               textTransform: 'none',
               '&:hover': { backgroundColor: '#cccccc' }
             }}
-            variant="text">
+            variant="text"
+            onClick={NavigateToHome}>
             Home
           </Button>
           <Button
@@ -124,7 +135,8 @@ function Header() {
               textTransform: 'none',
               '&:hover': { backgroundColor: '#cccccc' }
             }}
-            variant="text">
+            variant="text"
+            onClick={NavigateToEvents}>
             Events
           </Button>
           <Button
