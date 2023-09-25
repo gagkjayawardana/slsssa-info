@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { User } from './user/entities/user.entity';
+import { UserModule } from './user/user.module';
 
 dotenv.config();
 
 @Module({
   imports: [
+    UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,

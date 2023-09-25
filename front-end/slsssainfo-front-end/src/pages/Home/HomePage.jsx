@@ -7,6 +7,8 @@ import Footer from '../../components/Footer/Footer';
 import homeImage1 from '../../assests/images/homeImage1.jpeg';
 import LectureViewer from '../../components/PdfViewer/LecurePdf';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getUserAction } from '../../redux/user/userSlice';
 
 const Home_Container = styled.div`
   width: 100%;
@@ -121,7 +123,12 @@ function HomePage() {
     window.scrollTo(0, 0);
   }, []);
 
-  function SportInstructions() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserAction());
+  }, []);
+
+  const SportInstructions = () => {
     return (
       <InstructionPdfs>
         <Sub_Instruction_h3>Basic in Air Rifle & Air Pistol Shooting</Sub_Instruction_h3>
@@ -130,7 +137,7 @@ function HomePage() {
         <LectureViewer pdfUrl="pdfs/issfRules.pdf" />
       </InstructionPdfs>
     );
-  }
+  };
   return (
     <Home_Container>
       <div className="homeHeader">

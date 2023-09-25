@@ -4,6 +4,8 @@ import logo from '../../assests/images/logo.jpg';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutUserAction, selectUser } from '../../redux/user/userSlice';
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -98,6 +100,8 @@ const Navigationbar = styled.div`
 `;
 
 function Header() {
+  const userDetails = useSelector(selectUser);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const NavigateToHome = () => {
@@ -107,6 +111,15 @@ function Header() {
   const NavigateToEvents = () => {
     navigate('/schoolRegistration');
   };
+
+  const NavigateToUserLogin = () => {
+    navigate('/userLogin');
+  };
+
+  const logoutFunction = () => {
+    dispatch(logoutUserAction({ navigate }));
+  };
+
   return (
     <HeaderContainer>
       <Header_Logo_Topic>
@@ -149,16 +162,33 @@ function Header() {
             News
           </Button>
         </Stack>
-        <Button
-          sx={{
-            color: '#000000',
-            backgroundColor: '#ffffff',
-            textTransform: 'none',
-            '&:hover': { backgroundColor: '#cccccc' }
-          }}
-          variant="contained">
-          Login
-        </Button>
+        <div>
+          {userDetails.userName ? (
+            <Button
+              sx={{
+                color: '#000000',
+                backgroundColor: '#ffffff',
+                textTransform: 'none',
+                '&:hover': { backgroundColor: '#cccccc' }
+              }}
+              variant="contained"
+              onClick={logoutFunction}>
+              Logout
+            </Button>
+          ) : (
+            <Button
+              sx={{
+                color: '#000000',
+                backgroundColor: '#ffffff',
+                textTransform: 'none',
+                '&:hover': { backgroundColor: '#cccccc' }
+              }}
+              variant="contained"
+              onClick={NavigateToUserLogin}>
+              Login
+            </Button>
+          )}
+        </div>
       </Navigationbar>
     </HeaderContainer>
   );
