@@ -163,7 +163,7 @@ function Header() {
           </Button>
         </Stack>
         <div>
-          {userDetails.userName ? (
+          {userDetails?.userName ? (
             <Button
               sx={{
                 color: '#000000',

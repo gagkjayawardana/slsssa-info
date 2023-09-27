@@ -36,3 +36,19 @@ export const logoutUserService = async () => {
     console.log(err);
   }
 };
+
+export const addUserService = async (userData) => {
+  try {
+    const userDetails = {
+      name: userData.name,
+      userName: userData.userName,
+      password: userData.password
+    };
+    const responseData = await axios.post('http://localhost:8000/user/register', userDetails, {
+      withCredentials: true
+    });
+    return responseData;
+  } catch (err) {
+    console.log(err);
+  }
+};

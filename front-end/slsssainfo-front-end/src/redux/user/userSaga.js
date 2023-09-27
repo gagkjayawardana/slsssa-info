@@ -1,6 +1,12 @@
-import { getLogedUserService, loginUserService, logoutUserService } from './userService';
+import {
+  addUserService,
+  getLogedUserService,
+  loginUserService,
+  logoutUserService
+} from './userService';
 import { takeEvery, call, put } from 'redux-saga/effects';
 import {
+  addUserAction,
   getUserAction,
   loginUserAction,
   logoutUserAction,
@@ -56,11 +62,25 @@ function* refreshGenerator() {
   }
 }
 
+function* addUserGenerator({ payload }) {
+  try {
+    const response = yield call(addUserService, payload);
+    if (response) {
+      alert('School Added Successfully');
+    } else {
+      alert('Fail to add school');
+    }
+  } catch (err) {
+    alert('Fail to add school', err);
+  }
+}
+
 function* allUsers() {
   yield takeEvery(loginUserAction, loginUserGenerator);
   yield takeEvery(getUserAction, getLogedUserGenerator);
   yield takeEvery(logoutUserAction, logoutUserGenerattor);
   yield takeEvery(refreshAction, refreshGenerator);
+  yield takeEvery(addUserAction, addUserGenerator);
 }
 
 export default allUsers;

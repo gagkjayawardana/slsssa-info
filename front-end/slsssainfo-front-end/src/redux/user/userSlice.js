@@ -6,6 +6,7 @@ export const userSlice = createSlice({
     user: []
   },
   reducers: {
+    addUserAction: () => {},
     loginUserAction: () => {},
     getUserAction: () => {},
     saveUserAction: (state, action) => {
@@ -16,8 +17,14 @@ export const userSlice = createSlice({
   }
 });
 
-export const { loginUserAction, getUserAction, saveUserAction, logoutUserAction, refreshAction } =
-  userSlice.actions;
+export const {
+  addUserAction,
+  loginUserAction,
+  getUserAction,
+  saveUserAction,
+  logoutUserAction,
+  refreshAction
+} = userSlice.actions;
 
 //selectors
 export const selectUser = (state) => state.userReducer.user;

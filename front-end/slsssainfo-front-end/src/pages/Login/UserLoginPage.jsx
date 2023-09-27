@@ -51,12 +51,35 @@ const Log_Err_Msg = styled.span`
   color: #cc0000;
 `;
 
+const Create_School_Button = styled.div`
+  width: 35%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 1024px) {
+    width: 50%;
+  }
+
+  @media (max-width: 900px) {
+    width: 60%;
+  }
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+`;
+
 function UserLogin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const NavigateToHome = () => {
     navigate('/');
+  };
+
+  const NavigateToAddSchool = () => {
+    navigate('/createSchool');
   };
 
   const initialValues = {
@@ -140,6 +163,20 @@ function UserLogin() {
           </Button>
         </Login_Form_Action>
       </Login_Form>
+      <Create_School_Button>
+        <Button
+          sx={{
+            marginTop: '45px',
+            backgroundColor: '#ff0000',
+            '&:hover': { backgroundColor: '#ff6666' },
+            textTransform: 'none'
+          }}
+          onClick={NavigateToAddSchool}
+          variant="contained"
+          fullWidth>
+          Add New School
+        </Button>
+      </Create_School_Button>
     </Login_Page>
   );
 }
