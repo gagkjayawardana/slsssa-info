@@ -5,12 +5,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
+import { CompetitionEvent } from './competition/entities/competition.entity';
+import { CompetitionModule } from './competition/competition.module';
 
 dotenv.config();
 
 @Module({
   imports: [
     UserModule,
+    CompetitionModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -18,7 +21,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User],
+      entities: [User, CompetitionEvent],
       synchronize: true,
     }),
   ],

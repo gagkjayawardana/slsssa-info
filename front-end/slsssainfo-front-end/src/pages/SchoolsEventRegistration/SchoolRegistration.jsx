@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
 import { selectParticipants, selectReceipt } from '../../redux/school/schoolsSlice';
+import { selectUser } from '../../redux/user/userSlice';
+import TextField from '@mui/material/TextField';
 
 const School_Register_Container = styled.div`
   width: 100%;
@@ -43,6 +45,9 @@ const Submit_Schools_Form_H2 = styled.h2`
 function SchoolRegistration() {
   const schoolsParticipants = useSelector(selectParticipants);
   const schoolsReceipt = useSelector(selectReceipt);
+  const userDetails = useSelector(selectUser);
+  const competitionName = localStorage.getItem('competitionName');
+  const schoolName = userDetails.name;
 
   const completeSchoolRegistration = () => {
     if (schoolsParticipants && schoolsReceipt) {
@@ -59,6 +64,24 @@ function SchoolRegistration() {
       </div>
       <School_Register_Body>
         <Schools_Register_h1>Schools Registration</Schools_Register_h1>
+        <div>
+          <Typography variant="h6" gutterBottom>
+            Competition: {competitionName}
+          </Typography>
+          {userDetails.role === 'school' ? (
+            <Typography variant="h6" gutterBottom>
+              School Name: {schoolName}
+            </Typography>
+          ) : (
+            <TextField
+              name="schoolName"
+              sx={{ marginBottom: '20px' }}
+              id="outlined-basic"
+              label="Enter School Name"
+              variant="outlined"
+            />
+          )}
+        </div>
         <Schools_Registration_Introduction>
           <Typography variant="body1" gutterBottom>
             <b>Competitor Information:</b>

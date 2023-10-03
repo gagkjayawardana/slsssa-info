@@ -107,9 +107,9 @@ function Header() {
   const NavigateToHome = () => {
     navigate('/');
   };
-  // Temporarily navigate to the SchollRegistrartion page
+
   const NavigateToEvents = () => {
-    navigate('/schoolRegistration');
+    navigate('/shootingEvents');
   };
 
   const NavigateToUserLogin = () => {

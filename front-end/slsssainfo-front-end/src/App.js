@@ -7,6 +7,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { refreshAction } from './redux/user/userSlice';
 import CreateNewSchool from './pages/CreateSchool/CreateSchoolPage';
+import ShootingEvents from './pages/Events/EventPage';
+import CreateEvent from './pages/CreateEvent/CreateEvent';
+import { getCompetitionAction } from './redux/competition/competitionSlice';
 
 // import './App.css';
 
@@ -14,6 +17,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshAction());
+    dispatch(getCompetitionAction());
   }, []);
   return (
     <>
@@ -22,9 +26,11 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/schoolRegistration" element={<SchoolRegistration />} />
+            <Route path="/schoolRegistration/:competitionName" element={<SchoolRegistration />} />
             <Route path="/userLogin" element={<UserLogin />} />
             <Route path="/createSchool" element={<CreateNewSchool />} />
+            <Route path="/shootingEvents" element={<ShootingEvents />} />
+            <Route path="/createEvent" element={<CreateEvent />} />
           </Routes>
         </BrowserRouter>
       </div>
