@@ -7,6 +7,8 @@ import { User } from './user/entities/user.entity';
 import { UserModule } from './user/user.module';
 import { CompetitionEvent } from './competition/entities/competition.entity';
 import { CompetitionModule } from './competition/competition.module';
+import { CompetitorModule } from './competitors/competitor.module';
+import { Competitors } from './competitors/entities/competitors.entity';
 
 dotenv.config();
 
@@ -14,6 +16,7 @@ dotenv.config();
   imports: [
     UserModule,
     CompetitionModule,
+    CompetitorModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -21,7 +24,7 @@ dotenv.config();
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User, CompetitionEvent],
+      entities: [User, CompetitionEvent, Competitors],
       synchronize: true,
     }),
   ],

@@ -54,6 +54,7 @@ function EventCard({
   const navigateToRegisterSchool = () => {
     if (userDetails.userName) {
       localStorage.setItem('competitionName', competitionName);
+      localStorage.setItem('competitionDate', competitionDate);
       navigate(`/schoolRegistration/${competitionName}`);
     } else {
       alert('Please Login to the System');

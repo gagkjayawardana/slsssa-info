@@ -4,6 +4,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import userReducer from './user/userSlice';
 import competitionReducer from './competition/competitionSlice';
+import competitorReducer from './competitor/competitorSlice';
 
 const saga = createSagaMiddleware();
 
@@ -11,7 +12,8 @@ const store = configureStore({
   reducer: {
     schoolReducer: schoolReducer,
     userReducer: userReducer,
-    competitionReducer: competitionReducer
+    competitionReducer: competitionReducer,
+    competitorReducer: competitorReducer
   },
   middleware: [saga]
 });

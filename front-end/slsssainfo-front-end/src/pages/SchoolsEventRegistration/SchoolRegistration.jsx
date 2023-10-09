@@ -6,10 +6,10 @@ import SchoolsRegisterTable from '../../components/SchoolsRegistration/SchoolsRe
 import UploadReceipt from '../../components/PaymentReceipt/UploadReceipt';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectParticipants, selectReceipt } from '../../redux/school/schoolsSlice';
 import { selectUser } from '../../redux/user/userSlice';
-import TextField from '@mui/material/TextField';
+import { addcompetitorAction } from '../../redux/competitor/competitorSlice';
 
 const School_Register_Container = styled.div`
   width: 100%;
@@ -47,12 +47,56 @@ function SchoolRegistration() {
   const schoolsReceipt = useSelector(selectReceipt);
   const userDetails = useSelector(selectUser);
   const competitionName = localStorage.getItem('competitionName');
+  const competitionDate = localStorage.getItem('competitionDate');
   const schoolName = userDetails.name;
+  const dispatch = useDispatch();
+
+  console.log('participants', schoolsParticipants);
 
   const completeSchoolRegistration = () => {
-    if (schoolsParticipants && schoolsReceipt) {
-      console.log('participants', schoolsParticipants);
-      console.log('Receipt', schoolsReceipt);
+    if (schoolsParticipants && schoolsReceipt && competitionName) {
+      const participantsWithInfo = schoolsParticipants.map((participant) => ({
+        ...participant,
+        competitionName: competitionName,
+        schoolName: schoolName
+      }));
+
+      const dateOfCompetition = new Date(competitionDate);
+
+      for (const participant of participantsWithInfo) {
+        const competitionName = participant.competitionName;
+        const schoolName = participant.schoolName;
+        const participantName = participant.name;
+        //const participantBirthday = new Date(participant.birthday);
+        const participantBirthdayParts = participant.birthday.split('-'); // Assuming date format is DD-MM-YYYY
+        const participantBirthday = new Date(
+          `${participantBirthdayParts[2]}-${participantBirthdayParts[1]}-${participantBirthdayParts[0]}`
+        );
+        const rifleOrPistol = participant.weapon;
+        const menOrWomen = participant.gender;
+        let youthOrJunior;
+        if (dateOfCompetition.getFullYear() - participantBirthday.getFullYear() >= 17) {
+          youthOrJunior = 'Youth';
+        } else {
+          youthOrJunior = 'Junior';
+        }
+
+        dispatch(
+          addcompetitorAction({
+            competitionName,
+            schoolName,
+            participantName,
+            participantBirthday,
+            rifleOrPistol,
+            menOrWomen,
+            youthOrJunior
+          })
+        );
+      }
+    } else if (!schoolsParticipants) {
+      alert('Please Confirm the Participants Details');
+    } else if (!schoolsReceipt) {
+      alert('Please confirm the Payment');
     } else {
       alert('Please enter Participants Details and Payment Receipt');
     }
@@ -68,19 +112,10 @@ function SchoolRegistration() {
           <Typography variant="h6" gutterBottom>
             Competition: {competitionName}
           </Typography>
-          {userDetails.role === 'school' ? (
-            <Typography variant="h6" gutterBottom>
-              School Name: {schoolName}
-            </Typography>
-          ) : (
-            <TextField
-              name="schoolName"
-              sx={{ marginBottom: '20px' }}
-              id="outlined-basic"
-              label="Enter School Name"
-              variant="outlined"
-            />
-          )}
+
+          <Typography variant="h6" gutterBottom>
+            School Name: {schoolName}
+          </Typography>
         </div>
         <Schools_Registration_Introduction>
           <Typography variant="body1" gutterBottom>

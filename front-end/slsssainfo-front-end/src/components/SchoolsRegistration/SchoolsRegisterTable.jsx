@@ -108,7 +108,7 @@ function SchoolsRegisterTable() {
       playerName: '',
       playerBirthday: '',
       selectedWeapon: 'Rifle',
-      gender: 'Male'
+      gender: 'Men'
     },
     validationSchema
   });
@@ -224,8 +224,8 @@ function SchoolsRegisterTable() {
             <FormControl component="fieldset">
               <FormLabel component="legend">Select Gender</FormLabel>
               <RadioGroup row name="gender" value={values.gender} onChange={handleChange}>
-                <FormControlLabel value="Male" control={<Radio />} label="Male" />
-                <FormControlLabel value="Female" control={<Radio />} label="Female" />
+                <FormControlLabel value="Men" control={<Radio />} label="Male" />
+                <FormControlLabel value="Women" control={<Radio />} label="Female" />
               </RadioGroup>
             </FormControl>
           </Schools_Register_RadioGroups>
