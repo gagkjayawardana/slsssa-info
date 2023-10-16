@@ -7,11 +7,20 @@ export const competitorSlice = createSlice({
   },
   reducers: {
     addcompetitorAction: () => {},
-    getcompetitorAction: () => {}
+    getcompetitorAction: () => {},
+    saveCompetitorAction: (state, action) => {
+      state.competitor = action.payload;
+    },
+    updateCompetitorAction: () => {}
   }
 });
 
-export const { addcompetitorAction, getcompetitorAction } = competitorSlice.actions;
+export const {
+  addcompetitorAction,
+  getcompetitorAction,
+  saveCompetitorAction,
+  updateCompetitorAction
+} = competitorSlice.actions;
 
 //selectors
 export const selectcompetitor = (state) => state.competitorReducer.competitor;

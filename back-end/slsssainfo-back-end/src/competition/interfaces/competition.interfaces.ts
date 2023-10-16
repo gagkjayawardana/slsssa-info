@@ -7,3 +7,9 @@ export interface CompetitionInterface {
   competitionVenue: string;
   competitionDescription: string;
 }
+
+export interface JuniorRifleMenInterface {
+  rifleOrPistol: string;
+  menOrWomen: string;
+  youthOrJunior: string;
+}

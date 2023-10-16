@@ -61,6 +61,11 @@ function EventCard({
       navigate('/userLogin');
     }
   };
+
+  const navigateToResults = () => {
+    localStorage.setItem('competitionNameForResults', competitionName);
+    navigate('/addScores');
+  };
   return (
     <Event_Card>
       <Typography variant="h4" gutterBottom>
@@ -119,7 +124,8 @@ function EventCard({
                 },
                 textTransform: 'none'
               }}
-              variant="contained">
+              variant="contained"
+              onClick={navigateToResults}>
               View Results
             </Button>
           </div>

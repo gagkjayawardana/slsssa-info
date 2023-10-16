@@ -67,8 +67,7 @@ function SchoolRegistration() {
         const competitionName = participant.competitionName;
         const schoolName = participant.schoolName;
         const participantName = participant.name;
-        //const participantBirthday = new Date(participant.birthday);
-        const participantBirthdayParts = participant.birthday.split('-'); // Assuming date format is DD-MM-YYYY
+        const participantBirthdayParts = participant.birthday.split('-');
         const participantBirthday = new Date(
           `${participantBirthdayParts[2]}-${participantBirthdayParts[1]}-${participantBirthdayParts[0]}`
         );
