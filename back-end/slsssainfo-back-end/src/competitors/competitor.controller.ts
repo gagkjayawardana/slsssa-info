@@ -99,7 +99,7 @@ export class CompetitorController {
     }
   }
 
-  @Get('/YouthRifleMen')
+  @Get('/youthRifleMen')
   async getjYouthRifleMenController(@Req() req: Request, @Res() res: Response) {
     try {
       const { competitionName } = req.body;
@@ -112,7 +112,7 @@ export class CompetitorController {
     }
   }
 
-  @Get('/YouthRifleWomen')
+  @Get('/youthRifleWomen')
   async getjYouthRifleWomenController(
     @Req() req: Request,
     @Res() res: Response,
@@ -162,7 +162,7 @@ export class CompetitorController {
     }
   }
 
-  @Get('/YouthPistolMen')
+  @Get('/youthPistolMen')
   async getjYouthPistolMenController(
     @Req() req: Request,
     @Res() res: Response,
@@ -178,7 +178,7 @@ export class CompetitorController {
     }
   }
 
-  @Get('/YouthPistolWomen')
+  @Get('/youthPistolWomen')
   async getjYouthPistolWomenController(
     @Req() req: Request,
     @Res() res: Response,

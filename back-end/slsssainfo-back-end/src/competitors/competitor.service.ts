@@ -68,6 +68,9 @@ export class CompetitorService {
           menOrWomen: 'Men',
           youthOrJunior: 'Junior',
         },
+        order: {
+          marks: 'DESC',
+        },
       });
       return juniorRifleMen;
     } catch (err) {
@@ -83,6 +86,9 @@ export class CompetitorService {
           rifleOrPistol: 'Rifle',
           menOrWomen: 'Women',
           youthOrJunior: 'Junior',
+        },
+        order: {
+          marks: 'DESC',
         },
       });
       return juniorRifleWomen;
@@ -100,6 +106,9 @@ export class CompetitorService {
           menOrWomen: 'Men',
           youthOrJunior: 'Youth',
         },
+        order: {
+          marks: 'DESC',
+        },
       });
       return YouthRifleMen;
     } catch (err) {
@@ -115,6 +124,9 @@ export class CompetitorService {
           rifleOrPistol: 'Rifle',
           menOrWomen: 'Women',
           youthOrJunior: 'Youth',
+        },
+        order: {
+          marks: 'DESC',
         },
       });
       return YouthRifleWomen;
@@ -132,6 +144,9 @@ export class CompetitorService {
           menOrWomen: 'Men',
           youthOrJunior: 'Junior',
         },
+        order: {
+          marks: 'DESC',
+        },
       });
       return juniorPistolMen;
     } catch (err) {
@@ -147,6 +162,9 @@ export class CompetitorService {
           rifleOrPistol: 'Pistol',
           menOrWomen: 'Women',
           youthOrJunior: 'Junior',
+        },
+        order: {
+          marks: 'DESC',
         },
       });
       return juniorPistolWomen;
@@ -164,6 +182,9 @@ export class CompetitorService {
           menOrWomen: 'Men',
           youthOrJunior: 'Youth',
         },
+        order: {
+          marks: 'DESC',
+        },
       });
       return YouthPistolMen;
     } catch (err) {
@@ -179,6 +200,9 @@ export class CompetitorService {
           rifleOrPistol: 'Pistol',
           menOrWomen: 'Women',
           youthOrJunior: 'Youth',
+        },
+        order: {
+          marks: 'DESC',
         },
       });
       return YouthPistolWomen;

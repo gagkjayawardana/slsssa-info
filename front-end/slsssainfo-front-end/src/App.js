@@ -11,6 +11,7 @@ import ShootingEvents from './pages/Events/EventPage';
 import CreateEvent from './pages/CreateEvent/CreateEvent';
 import { getCompetitionAction } from './redux/competition/competitionSlice';
 import AddScores from './pages/AddCompetitorsScores/AddScores';
+import DisplayResults from './pages/DisplayResults/DisplayResults';
 
 // import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/shootingEvents" element={<ShootingEvents />} />
             <Route path="/createEvent" element={<CreateEvent />} />
             <Route path="/addScores" element={<AddScores />} />
+            <Route path="/displayResults" element={<DisplayResults />} />
           </Routes>
         </BrowserRouter>
       </div>

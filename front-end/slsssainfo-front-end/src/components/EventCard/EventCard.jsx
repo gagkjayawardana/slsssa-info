@@ -64,7 +64,7 @@ function EventCard({
 
   const navigateToResults = () => {
     localStorage.setItem('competitionNameForResults', competitionName);
-    navigate('/addScores');
+    navigate('/displayResults');
   };
   return (
     <Event_Card>
