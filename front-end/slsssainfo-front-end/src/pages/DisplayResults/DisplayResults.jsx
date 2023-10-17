@@ -26,6 +26,7 @@ import {
 } from '../../redux/competitor/competitorSlice';
 import { useSelector } from 'react-redux';
 import CompetitionResultsTable from '../../components/Results/CompetitionResults';
+import { selectUser } from '../../redux/user/userSlice';
 
 const Display_Results_Page = styled.div`
   width: 100%;
@@ -72,6 +73,7 @@ const Youth_Pistol_Women_Table = styled.div`
 
 function DisplayResults() {
   const competitionName = localStorage.getItem('competitionNameForResults');
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -107,22 +109,24 @@ function DisplayResults() {
         <Typography variant="h4" gutterBottom>
           {competitionName} Results
         </Typography>
-        <Add_score_Button>
-          <Typography variant="h6" gutterBottom>
-            Add Scores
-          </Typography>
-          <Button
-            sx={{
-              marginLeft: '10px',
-              backgroundColor: '#ff0000',
-              '&:hover': { backgroundColor: '#ff6666' },
-              textTransform: 'none'
-            }}
-            variant="contained"
-            onClick={navigateToAddScore}>
-            Add
-          </Button>
-        </Add_score_Button>
+        {user.role === 'judge' && (
+          <Add_score_Button>
+            <Typography variant="h6" gutterBottom>
+              Add Scores
+            </Typography>
+            <Button
+              sx={{
+                marginLeft: '10px',
+                backgroundColor: '#ff0000',
+                '&:hover': { backgroundColor: '#ff6666' },
+                textTransform: 'none'
+              }}
+              variant="contained"
+              onClick={navigateToAddScore}>
+              Add
+            </Button>
+          </Add_score_Button>
+        )}
         <Junior_Rifle_Men_Table>
           <Typography variant="h5" gutterBottom>
             Junior Rifle Men Category

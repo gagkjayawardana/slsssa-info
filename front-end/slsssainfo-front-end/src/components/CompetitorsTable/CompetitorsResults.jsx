@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Table,
@@ -12,13 +12,33 @@ import {
   Input,
   Button
 } from '@mui/material';
-import { selectcompetitor, updateCompetitorAction } from '../../redux/competitor/competitorSlice';
+import {
+  getcompetitorAction,
+  selectcompetitor,
+  updateCompetitorAction
+} from '../../redux/competitor/competitorSlice';
+import { io } from 'socket.io-client';
+
+const socket = io('http://localhost:8000/', {
+  transports: ['websocket']
+});
 
 function ResultsTable() {
   const competitors = useSelector(selectcompetitor);
   const [searchQuery, setSearchQuery] = useState('');
   const [editableMarks, setEditableMarks] = useState({});
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    socket.on('competitor_updated', (data) => {
+      alert(data);
+      dispatch(getcompetitorAction());
+    });
+
+    return () => {
+      socket.off();
+    };
+  }, [competitors, socket]);
 
   const handleMarksChange = (competitorId, newMarks) => {
     const marks = parseInt(newMarks);

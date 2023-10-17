@@ -35,6 +35,11 @@ import {
   updateCompetitorAction
 } from './competitorSlice';
 
+import { io } from 'socket.io-client';
+const socket = io('http://localhost:8000/', {
+  transports: ['websocket']
+});
+
 function* addCompetitorGenerator({ payload }) {
   try {
     const response = yield call(addcompetitors, payload);
@@ -59,6 +64,7 @@ function* updateCompetitorGenerator({ payload }) {
   try {
     const response = yield call(updateCompetitor, payload);
     if (response) {
+      socket.emit('competitor_update', `Competitor Updated`);
       yield put(getcompetitorAction());
     }
   } catch (err) {

@@ -13,6 +13,7 @@ import * as bcrypt from 'bcrypt';
 export enum RoleType {
   SCHOOL = 'school',
   ADMIN = 'admin',
+  JUDGE = 'judge',
 }
 
 @Entity()

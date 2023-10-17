@@ -43,7 +43,7 @@ export class UserController {
       if (!('err' in user)) {
         const newToken = this.userService.createTokens(user);
         res.cookie('accessToken', newToken.newAccsessToken, {
-          maxAge: 60 * 60 * 1000,
+          maxAge: 60 * 60 * 3 * 1000,
           httpOnly: true,
         });
         res.cookie('refreshToken', newToken.newRefreshToken, {
@@ -97,7 +97,7 @@ export class UserController {
       const userToken = await this.userService.refreshService(refToken);
       if (userToken) {
         res.cookie('accessToken', userToken.newAccessToken, {
-          maxAge: 60 * 60 * 1000,
+          maxAge: 60 * 60 * 3 * 1000,
           httpOnly: true,
         });
 

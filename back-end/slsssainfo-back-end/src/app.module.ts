@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ import { CompetitionEvent } from './competition/entities/competition.entity';
 import { CompetitionModule } from './competition/competition.module';
 import { CompetitorModule } from './competitors/competitor.module';
 import { Competitors } from './competitors/entities/competitors.entity';
+import { VerifyLogout } from './middleware/loggedUser.middleware';
 
 dotenv.config();
 
@@ -31,4 +32,10 @@ dotenv.config();
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(VerifyLogout)
+      .forRoutes({ path: 'user/logout', method: RequestMethod.GET });
+  }
+}
