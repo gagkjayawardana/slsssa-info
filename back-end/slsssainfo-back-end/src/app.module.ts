@@ -10,6 +10,11 @@ import { CompetitionModule } from './competition/competition.module';
 import { CompetitorModule } from './competitors/competitor.module';
 import { Competitors } from './competitors/entities/competitors.entity';
 import { VerifyLogout } from './middleware/loggedUser.middleware';
+import {
+  AdminPermissions,
+  JudgePermissions,
+  SchoolPermissions,
+} from './middleware/authPermissions.middleware';
 
 dotenv.config();
 
@@ -37,5 +42,18 @@ export class AppModule {
     consumer
       .apply(VerifyLogout)
       .forRoutes({ path: 'user/logout', method: RequestMethod.GET });
+    consumer.apply(JudgePermissions).forRoutes({
+      path: 'competitors/:competitorId',
+      method: RequestMethod.PUT,
+    });
+    consumer
+      .apply(SchoolPermissions)
+      .forRoutes({ path: 'competitors', method: RequestMethod.POST });
+    consumer
+      .apply(AdminPermissions)
+      .forRoutes({ path: 'user/register', method: RequestMethod.POST });
+    consumer
+      .apply(AdminPermissions)
+      .forRoutes({ path: 'competition', method: RequestMethod.POST });
   }
 }

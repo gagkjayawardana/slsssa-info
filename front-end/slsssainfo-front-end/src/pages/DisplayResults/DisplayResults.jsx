@@ -73,6 +73,7 @@ const Youth_Pistol_Women_Table = styled.div`
 
 function DisplayResults() {
   const competitionName = localStorage.getItem('competitionNameForResults');
+  console.log('competition Name', competitionName);
   const user = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -90,7 +91,7 @@ function DisplayResults() {
     dispatch(getJuniorPistolWomen({ competitionName }));
     dispatch(getYouthPistolMen({ competitionName }));
     dispatch(getYouthPistolWomen({ competitionName }));
-  }, []);
+  }, [competitionName]);
 
   const juniorRifleMen = useSelector(selectJuniorRifleMen);
   const youthRifleMen = useSelector(selectYouthRifleMen);

@@ -11,9 +11,9 @@ export const addcompetitors = async (competitors) => {
   }
 };
 
-export const getCompetitors = async (competitionName) => {
+export const getCompetitors = async ({ competitionName }) => {
   try {
-    const response = await axios.get('http://localhost:8000/competitors', competitionName, {
+    const response = await axios.get(`http://localhost:8000/competitors/${competitionName}`, {
       withCredentials: true
     });
     return response.data;
@@ -34,11 +34,10 @@ export const updateCompetitor = async (competitor) => {
   }
 };
 
-export const getJuniorRifleMenService = async (competitionName) => {
+export const getJuniorRifleMenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/juniorRifleMen',
-      competitionName,
+      `http://localhost:8000/competitors/juniorRifleMen/${competitionName}`,
       {
         withCredentials: true
       }
@@ -49,11 +48,11 @@ export const getJuniorRifleMenService = async (competitionName) => {
   }
 };
 
-export const getYouthRifleMenService = async (competitionName) => {
+export const getYouthRifleMenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/youthRifleMen',
-      competitionName,
+      `http://localhost:8000/competitors/youthRifleMen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -64,11 +63,11 @@ export const getYouthRifleMenService = async (competitionName) => {
   }
 };
 
-export const getJuniorRifleWomenService = async (competitionName) => {
+export const getJuniorRifleWomenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/juniorRifleWomen',
-      competitionName,
+      `http://localhost:8000/competitors/juniorRifleWomen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -79,11 +78,11 @@ export const getJuniorRifleWomenService = async (competitionName) => {
   }
 };
 
-export const getYouthRifleWomenService = async (competitionName) => {
+export const getYouthRifleWomenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/youthRifleWomen',
-      competitionName,
+      `http://localhost:8000/competitors/youthRifleWomen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -94,11 +93,11 @@ export const getYouthRifleWomenService = async (competitionName) => {
   }
 };
 
-export const getJuniorPistolMenService = async (competitionName) => {
+export const getJuniorPistolMenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/juniorPistolMen',
-      competitionName,
+      `http://localhost:8000/competitors/juniorPistolMen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -109,11 +108,11 @@ export const getJuniorPistolMenService = async (competitionName) => {
   }
 };
 
-export const getJuniorPistolWomenService = async (competitionName) => {
+export const getJuniorPistolWomenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/juniorPistolWomen',
-      competitionName,
+      `http://localhost:8000/competitors/juniorPistolWomen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -124,11 +123,11 @@ export const getJuniorPistolWomenService = async (competitionName) => {
   }
 };
 
-export const getYouthPistolMenService = async (competitionName) => {
+export const getYouthPistolMenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/youthPistolMen',
-      competitionName,
+      `http://localhost:8000/competitors/youthPistolMen/${competitionName}`,
+
       {
         withCredentials: true
       }
@@ -139,11 +138,11 @@ export const getYouthPistolMenService = async (competitionName) => {
   }
 };
 
-export const getYouthPistolWomenService = async (competitionName) => {
+export const getYouthPistolWomenService = async ({ competitionName }) => {
   try {
     const response = await axios.get(
-      'http://localhost:8000/competitors/youthPistolWomen',
-      competitionName,
+      `http://localhost:8000/competitors/youthPistolWomen/${competitionName}`,
+
       {
         withCredentials: true
       }

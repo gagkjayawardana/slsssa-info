@@ -84,76 +84,80 @@ function ResultsTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {competitors
-              .filter((competitor) =>
-                String(competitor.competitorId).toLowerCase().includes(searchQuery.toLowerCase())
-              )
-              .map((competitor) => (
-                <TableRow key={competitor.competitorId}>
-                  <TableCell>{competitor.competitorId}</TableCell>
-                  <TableCell>{competitor.competitionName}</TableCell>
-                  <TableCell>{competitor.schoolName}</TableCell>
-                  <TableCell>{competitor.participantName}</TableCell>
-                  <TableCell>{competitor.participantBirthday}</TableCell>
-                  <TableCell>{competitor.rifleOrPistol}</TableCell>
-                  <TableCell>{competitor.menOrWomen}</TableCell>
-                  <TableCell>{competitor.youthOrJunior}</TableCell>
-                  <TableCell>
-                    {editableMarks[competitor.competitorId] !== undefined ? (
-                      <input
-                        type="number"
-                        value={editableMarks[competitor.competitorId] || ''}
-                        onChange={(e) =>
-                          setEditableMarks({
-                            ...editableMarks,
-                            [competitor.competitorId]: e.target.value
-                          })
-                        }
-                      />
-                    ) : (
-                      competitor.marks
-                    )}
-                  </TableCell>
-                  <TableCell>
-                    {editableMarks[competitor.competitorId] !== undefined ? (
-                      <>
+            {competitors &&
+              competitors.length > 0 &&
+              competitors
+                .filter((competitor) =>
+                  String(competitor.competitorId).toLowerCase().includes(searchQuery.toLowerCase())
+                )
+                .map((competitor) => (
+                  <TableRow key={competitor.competitorId}>
+                    <TableCell>{competitor.competitorId}</TableCell>
+                    <TableCell>{competitor.competitionName}</TableCell>
+                    <TableCell>{competitor.schoolName}</TableCell>
+                    <TableCell>{competitor.participantName}</TableCell>
+                    <TableCell>{competitor.participantBirthday}</TableCell>
+                    <TableCell>{competitor.rifleOrPistol}</TableCell>
+                    <TableCell>{competitor.menOrWomen}</TableCell>
+                    <TableCell>{competitor.youthOrJunior}</TableCell>
+                    <TableCell>
+                      {editableMarks[competitor.competitorId] !== undefined ? (
+                        <input
+                          type="number"
+                          value={editableMarks[competitor.competitorId] || ''}
+                          onChange={(e) =>
+                            setEditableMarks({
+                              ...editableMarks,
+                              [competitor.competitorId]: e.target.value
+                            })
+                          }
+                        />
+                      ) : (
+                        competitor.marks
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editableMarks[competitor.competitorId] !== undefined ? (
+                        <>
+                          <Button
+                            sx={{
+                              backgroundColor: '#ff0000',
+                              '&:hover': { backgroundColor: '#ff6666' },
+                              textTransform: 'none'
+                            }}
+                            onClick={() => stopEditingMarks(competitor.competitorId)}
+                            variant="contained">
+                            Save
+                          </Button>
+                          <Button
+                            sx={{
+                              marginLeft: '1px',
+                              backgroundColor: '#000000',
+                              '&:hover': { backgroundColor: '#cccccc' },
+                              textTransform: 'none'
+                            }}
+                            onClick={() => stopEditingMarks(competitor.competitorId)}
+                            variant="contained">
+                            Cancel
+                          </Button>
+                        </>
+                      ) : (
                         <Button
                           sx={{
                             backgroundColor: '#ff0000',
                             '&:hover': { backgroundColor: '#ff6666' },
                             textTransform: 'none'
                           }}
-                          onClick={() => stopEditingMarks(competitor.competitorId)}
+                          onClick={() =>
+                            startEditingMarks(competitor.competitorId, competitor.marks)
+                          }
                           variant="contained">
-                          Save
+                          Edit
                         </Button>
-                        <Button
-                          sx={{
-                            marginLeft: '1px',
-                            backgroundColor: '#000000',
-                            '&:hover': { backgroundColor: '#cccccc' },
-                            textTransform: 'none'
-                          }}
-                          onClick={() => stopEditingMarks(competitor.competitorId)}
-                          variant="contained">
-                          Cancel
-                        </Button>
-                      </>
-                    ) : (
-                      <Button
-                        sx={{
-                          backgroundColor: '#ff0000',
-                          '&:hover': { backgroundColor: '#ff6666' },
-                          textTransform: 'none'
-                        }}
-                        onClick={() => startEditingMarks(competitor.competitorId, competitor.marks)}
-                        variant="contained">
-                        Edit
-                      </Button>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
           </TableBody>
         </Table>
       </TableContainer>

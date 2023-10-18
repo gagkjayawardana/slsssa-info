@@ -35,10 +35,10 @@ export class CompetitorController {
     }
   }
 
-  @Get()
+  @Get('/:competitionName')
   async getAllCompetitorsController(@Req() req: Request, @Res() res: Response) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getAllCompetitorsService(competitionName);
       res.status(200);
@@ -68,10 +68,10 @@ export class CompetitorController {
     }
   }
 
-  @Get('/juniorRifleMen')
+  @Get('/juniorRifleMen/:competitionName')
   async getJuniorRifleMenController(@Req() req: Request, @Res() res: Response) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getJuniorRifleMenService(competitionName);
       res.status(200);
@@ -81,13 +81,13 @@ export class CompetitorController {
     }
   }
 
-  @Get('/juniorRifleWomen')
+  @Get('/juniorRifleWomen/:competitionName')
   async getJuniorRifleWomenController(
     @Req() req: Request,
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getJuniorRifleWomenService(
           competitionName,
@@ -99,10 +99,10 @@ export class CompetitorController {
     }
   }
 
-  @Get('/youthRifleMen')
+  @Get('/youthRifleMen/:competitionName')
   async getjYouthRifleMenController(@Req() req: Request, @Res() res: Response) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getYouthRifleMenService(competitionName);
       res.status(200);
@@ -112,13 +112,13 @@ export class CompetitorController {
     }
   }
 
-  @Get('/youthRifleWomen')
+  @Get('/youthRifleWomen/:competitionName')
   async getjYouthRifleWomenController(
     @Req() req: Request,
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getYouthRifleWomenService(competitionName);
       res.status(200);
@@ -128,13 +128,13 @@ export class CompetitorController {
     }
   }
 
-  @Get('/juniorPistolMen')
+  @Get('/juniorPistolMen/:competitionName')
   async getJuniorPistolMenController(
     @Req() req: Request,
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getJuniorPistolMenService(competitionName);
       res.status(200);
@@ -144,13 +144,13 @@ export class CompetitorController {
     }
   }
 
-  @Get('/juniorPistolWomen')
+  @Get('/juniorPistolWomen/:competitionName')
   async getJuniorPistolWomenController(
     @Req() req: Request,
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getJuniorPistolWomenService(
           competitionName,
@@ -168,7 +168,7 @@ export class CompetitorController {
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getYouthPistolMenService(competitionName);
       res.status(200);
@@ -184,7 +184,7 @@ export class CompetitorController {
     @Res() res: Response,
   ) {
     try {
-      const { competitionName } = req.body;
+      const { competitionName } = req.params;
       const competitors =
         await this.competitorService.getYouthPistolWomenService(
           competitionName,
