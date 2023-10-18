@@ -18,7 +18,12 @@ export interface CompetitorResultsInterface {
   rifleOrPistol: string;
   menOrWomen: string;
   youthOrJunior: string;
-  marks: number;
-  place: number;
-  sharpShooter: string;
+  marks: number | null;
+  place: number | null;
+  sharpShooter: string | null;
+}
+
+export interface GetCompetitorResultsType {
+  competitors: Array<CompetitorResultsInterface>;
+  err: string;
 }
